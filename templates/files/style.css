@@ -1,0 +1,24 @@
+.mi-p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    border: solid 3px red;
+    border-radius: 5px;
+}
+.cls {
+    margin-bottom: 3%;
+    margin-top: 3%;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    direction: rtl;
+}
+#navbar {
+    font-size: 18px;
+    background-color: rgba(135, 207, 235, 0.226);
+    
+}
+.cls1 {
+    margin-bottom: 3%;
+    margin-top: 3%;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
