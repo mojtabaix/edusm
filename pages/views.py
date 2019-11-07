@@ -38,3 +38,4 @@ def loginpage(request):
     else:
         form = LoginForm()
     return render(request, 'signup.html', {'form': form})
+

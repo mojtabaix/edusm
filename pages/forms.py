@@ -11,6 +11,7 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, help_text='required')
     error_messages = {
         'password_mismatch': _("گذرواژه و تکرار گذرواژه یکسان نیستند"),
+        'username_exists' : _('یوزرت تکراریه کاکو')
     }
 
     class Meta:
