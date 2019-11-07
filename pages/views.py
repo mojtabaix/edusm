@@ -30,19 +30,27 @@ def signuppage(request):
 
 def loginpage(request):
     if request.POST:
-        form = AuthenticationForm(request.POST)
+        # print(request.POST)
+        form = LoginForm(request.POST)
+        print(form)
         if form.is_valid():
-
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
+        else:
+            return render(request, 'login_form.html', {'error': 'login form isnt valid'})
     else:
-        form = AuthenticationForm()
+        # print("request not post")
+        form = LoginForm()
     return render(request, 'login_form.html', {'form': form})
 def contactPage(request):
     if request.POST:
-        return render(request, 'done.html')
+        title = request.POST.get('title')
+        email = request.POST.get('email')
+        content = request.POST.get('text')
+        render(request, 'contact-us.html', {title,email,content})
+        return redirect('home')
     return render(request, 'contact-us.html')
 

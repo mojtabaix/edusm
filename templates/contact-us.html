@@ -1,8 +1,8 @@
 {% extends 'base1.html' %}
 {% block content %}
-<form id="contact_us_form" method="post">
+<form id="contact_us_form" action="webe19lopers@gmail.com?subject={{ title }}&body={{ content }} {{ email }}" method="POST">
         {% csrf_token %}
-        <div class="form-group">
+    <div class="form-group">
           <label for="title">Email address</label>
           <input type="text" class="form-control" name="title" id="title" placeholder="Enter email" required>
         </div>
@@ -13,8 +13,7 @@
         <div class="form-group">
           <label for="textarea">Textarea</label>
             <textarea name="text" minlength="10" maxlength="250" id="textarea" class="form-control" cols="30" rows="10" required></textarea>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-
 </form>
 {% endblock %}

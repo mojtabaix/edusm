@@ -27,5 +27,10 @@ class SignUpForm(UserCreationForm):
 
 
 
-class LoginForm(forms.Form):
-    user_name = forms.CharField(max_length=50)
+class LoginForm(AuthenticationForm):
+    def is_valid(self):
+        if User.objects.filter(self.username).first():
+            return False
+
+
+
