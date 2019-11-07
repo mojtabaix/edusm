@@ -1,8 +1,10 @@
-{% extend 'base.html' %}
+{% extends 'base1.html' %}
+{% block content %}
         <div class="container">
             <div class="row">
                 <div class="col-xl cls1">
-                    <form id="register_form">
+                    <form id="register_form" method="post" action="">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="username">UserName</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
@@ -11,7 +13,9 @@
                             <label for="password">LastName</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
                         </div>
+                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
+{% endblock %}
