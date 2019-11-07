@@ -41,4 +41,8 @@ def loginpage(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login_form.html', {'form': form})
+def contactPage(request):
+    if request.POST:
+        return render(request, 'done.html')
+    return render(request, 'contact-us.html')
 
