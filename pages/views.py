@@ -98,9 +98,9 @@ def setting_page(request):
     if request.POST:
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        if first_name:
+        if first_name is not None:
              request.user.last_name = last_name
-        if last_name:
+        if last_name is not None:
              request.user.first_name = first_name
         redirect('profile')
     return render(request, 'setting.html')
