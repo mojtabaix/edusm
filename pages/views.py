@@ -76,7 +76,6 @@ def contact_page(request):
 
 @login_required(login_url='login')
 def user_page(request):
-
     return render(request, 'user-profile.html', {'first_name': request.user.first_name, 'user_name': request.user.username, 'last_name': request.user.last_name})
 
 
@@ -84,3 +83,15 @@ def logout_page(request):
     for user in User.objects.filter(is_active=True):
         logout(request)
     return redirect('home')
+
+
+def setting_page(request):
+    if request.POST:
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        if first_name:
+             request.user.last_name = last_name
+        if last_name:
+             request.user.first_name = first_name
+        redirect('profile')
+    return render(request, 'setting.html')
