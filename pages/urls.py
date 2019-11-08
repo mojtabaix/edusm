@@ -13,5 +13,5 @@ urlpatterns = [
     path('settings/', setting_page, name='settings'),
     path('panel/', panel_page, name='panel'),
     path('new_course/', new_course, name='new_course'),
-    path('all_courses', all_course, name='all_courses')
+    path('all_courses', all_courses, name='all_courses')
 ]
