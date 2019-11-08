@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.generic.base import View
 
+from pages.decorators import superuser_required
 from pages.forms import SignUpForm, new_course_form
 
 
@@ -117,12 +118,15 @@ def setting_page(request):
 def panel_page(request):
     return render(request, 'panel.html')
 
-@user_passes_test(lambda u: u.is_superuser)
+# @user_passes_test(lambda u: u.is_superuser)
+# @superuser_required
 def new_course(request):
      if request.POST:
          form = new_course_form(request.POST)
          if form.is_valid():
              user = form.save()
+             print(user)
+             user.refresh_from_db()
      return render(request, 'make_new_course.html')
 
 
