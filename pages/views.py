@@ -1,12 +1,15 @@
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.views.generic.base import View
+
 from pages.forms import SignUpForm, new_course_form
 
 
@@ -96,12 +99,17 @@ def setting_page(request):
     if request.POST:
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        if first_name is not None:
-             request.user.student.first_name = first_name
+        if first_name != "":
+             # print("in if")
+             request.user.first_name = first_name
+             # print(first_name)
              request.user.save()
-        if last_name is not None:
-             request.user.student.last_name = last_name
+             request.user.refresh_from_db()
+             # print("user is saved")
+        if last_name != "":
+             request.user.last_name = last_name
              request.user.save()
+             request.user.refresh_from_db()
         return redirect('profile')
     return render(request, 'setting.html')
 
@@ -109,13 +117,13 @@ def setting_page(request):
 def panel_page(request):
     return render(request, 'panel.html')
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def new_course(request):
-    if request.POST:
-        form = new_course_form(request.POST)
-        if form.is_valid():
-            user = form.save()
-    return render(request, 'make_new_course.html')
+     if request.POST:
+         form = new_course_form(request.POST)
+         if form.is_valid():
+             user = form.save()
+     return render(request, 'make_new_course.html')
 
 
 def all_courses(request):
