@@ -69,8 +69,8 @@ def contact_page(request):
         content = request.POST.get('text')
         email = EmailMessage(title, email + "  "+content, to=['webe19lopers@gmail.com'])
         email.send()
-        # render(request, 'contact-us.html', {title, email, content})
-        return redirect('home')
+        return render(request, 'contact-us.html', {title, email, content})
+        # return redirect('home')
     return render(request, 'contact-us.html')
 
 
@@ -95,3 +95,5 @@ def setting_page(request):
              request.user.first_name = first_name
         redirect('profile')
     return render(request, 'setting.html')
+def panel_page(request):
+    return render(request, 'panel.html')
