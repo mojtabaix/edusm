@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from pages.forms import SignUpForm
+from pages.forms import SignUpForm, new_course_form
 
 
 def homepage(request):
@@ -112,7 +112,11 @@ def panel_page(request):
 
 def new_course(request):
     if request.POST:
-       department=request.POST.get("depratment")
+        form = new_course_form(request.POST)
+        if form.is_valid():
+            user = form.save()
     return render(request, 'make_new_course.html')
+
+
 def all_courses(request):
     return HttpResponse("all courses will be here")

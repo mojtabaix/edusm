@@ -36,7 +36,7 @@ class Course(models.Model):
     Monday = '2'
     Tuesday = '3'
     Wensday = '4'
-    YEAR_IN_SCHOOL_CHOICES = [
+    DAYS = [
         (Saturday, 'شنبه'),
         (Sunday, 'یک شنبه'),
         (Monday, 'دو شنیه'),
@@ -45,10 +45,10 @@ class Course(models.Model):
     ]
     first_day = models.CharField(
         max_length=1,
-        choices=YEAR_IN_SCHOOL_CHOICES,
+        choices=DAYS,
         blank=False
     )
     second_day = models.CharField(
         max_length=1,
-        choices=YEAR_IN_SCHOOL_CHOICES,
+        choices=DAYS,
     )

@@ -25,7 +25,7 @@ class SignUpForm(UserCreationForm):
     #         return False
 
 
-class new_course_form(forms.Form):
+class new_course_form(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
