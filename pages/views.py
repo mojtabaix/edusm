@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.db.models import Q
 
 # Create your views here.
 from django.views.generic.base import View
@@ -160,7 +161,15 @@ def all_courses(request):
     courses = Course.objects.all()
     if request.POST:
         search = request.POST.get('search_query')
-        results = Course.objects.all().filter(department=search)
+        if request.POST.get('teacher'):
+            q = Q(teacher=request.POST.get('search_query'))
+        if request.POST.get('course'):
+            q = q | Q(name=request.POST.get('search_query'))
+        if request.POST.get('department') or not request.POST.get('course') and not request.POST.get('teacher'):
+            q = q | Q(department=request.POST.get('search_query'))
+
+        results = Course.objects.all().filter(q)
+
         return render(request, 'courses.html', {'search_results': results, 'courses': courses})
     # print(courses)
     return render(request, 'courses.html', {'courses': courses})

@@ -28,6 +28,7 @@ class Course(models.Model):
     group_number = models.IntegerField(blank=False)
 
     teacher = models.CharField(max_length=150, blank=False)
+    # date = models.DateField(blank=False)
 
     start_time = models.CharField(max_length=7)
     end_time = models.CharField(max_length=6)

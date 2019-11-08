@@ -14,10 +14,10 @@
 </div>
 <form action="" id="search_form" method="post">
     {% csrf_token %}
-        <input type="text" name="search_query" class="form_control">
-        <input type="checkbox" name="department" class="form-check-input">
-        <input type="checkbox" name="teacher" class="form-check-input">
-        <input type="checkbox" name="course" class="form-check-input">
+        <input type="text" name="search_query" class="form_control" >
+        <input type="checkbox" name="department" class="form-check-input" value="2">department <br>
+        <input type="checkbox" name="teacher" class="form-check-input" value="1">teacher <br>
+        <input type="checkbox" name="course" class="form-check-input" value="3">course <br>
         <button type="submit" class="btn btn-primary" name="submit">submit</button>
 
     <div id="search_result">
