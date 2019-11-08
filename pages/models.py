@@ -31,6 +31,24 @@ class Course(models.Model):
 
     start_time = models.TimeField(blank=False)
     end_time = models.TimeField(blank=False)
-
-    first_day = models.CharField(max_length=150, blank=False)
-    second_day = models.CharField(max_length=150)
+    Saturday = '0'
+    Sunday = '1'
+    Monday = '2'
+    Tuesday = '3'
+    Wensday = '4'
+    YEAR_IN_SCHOOL_CHOICES = [
+        (Saturday, 'شنبه'),
+        (Sunday, 'یک شنبه'),
+        (Monday, 'دو شنیه'),
+        (Tuesday, 'سه شنبه'),
+        (Wensday, 'چهارشنیه')
+    ]
+    first_day = models.CharField(
+        max_length=1,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        blank=False
+    )
+    second_day = models.CharField(
+        max_length=1,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+    )
