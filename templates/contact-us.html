@@ -1,6 +1,6 @@
 {% extends 'base1.html' %}
 {% block content %}
-<form id="contact_us_form" action="webe19lopers@gmail.com?subject={{ title }}&body={{ content }} {{ email }}" method="POST">
+<form id="contact_us_form"  method="POST">
         {% csrf_token %}
     <div class="form-group">
           <label for="title">Email address</label>
