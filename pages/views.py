@@ -76,7 +76,8 @@ def contact_page(request):
 
 @login_required(login_url='login')
 def user_page(request):
-    return HttpResponse("user is logged in")
+
+    return render(request, 'user-profile.html', {'first_name': request.user.first_name, 'user_name': request.user.username, 'last_name': request.user.last_name})
 
 
 def logout_page(request):
