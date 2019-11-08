@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext, gettext_lazy as _
-from pages.models import Student
+from pages.models import Student, Course
 
 
 class SignUpForm(UserCreationForm):
@@ -25,6 +25,10 @@ class SignUpForm(UserCreationForm):
     #         return False
 
 
+class new_course_form(forms.Form):
+    class Meta:
+        model = Course
+        fields = '__all__'
 
 
 class LoginForm(AuthenticationForm):

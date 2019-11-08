@@ -67,15 +67,21 @@ def contact_page(request):
         title = request.POST.get('title')
         email = request.POST.get('email')
         content = request.POST.get('text')
+        if len(content) < 10 or len(content)>250 :
+            return render(request, 'contact-us.html', {'error': 'form isnt valid'})
+        if email is None or title is None:
+            return render(request, 'contact-us.html', {'error': 'form isnt valid'})
         email = EmailMessage(title, email + "  "+content, to=['webe19lopers@gmail.com'])
         email.send()
+
+
         return redirect('sent_email')
-        # return redirect('home')
     return render(request, 'contact-us.html')
 
 
 def sent_email(request):
     return render(request, 'files/emailSent.html')
+
 
 @login_required(login_url='login')
 def user_page(request):
@@ -98,8 +104,12 @@ def setting_page(request):
              request.user.first_name = first_name
         redirect('profile')
     return render(request, 'setting.html')
+
+
 def panel_page(request):
     return render(request, 'panel.html')
+
+
 def new_course(request):
     if request.POST:
        department=request.POST.get("depratment")
