@@ -69,10 +69,13 @@ def contact_page(request):
         content = request.POST.get('text')
         email = EmailMessage(title, email + "  "+content, to=['webe19lopers@gmail.com'])
         email.send()
-        return render(request, 'contact-us.html', {'title': title, 'email': email, 'content': content})
+        return redirect('sent_email')
         # return redirect('home')
     return render(request, 'contact-us.html')
 
+
+def sent_email(request):
+    return render(request, 'files/emailSent.html')
 
 @login_required(login_url='login')
 def user_page(request):
