@@ -19,13 +19,16 @@
         <input type="checkbox" name="teacher" class="form-check-input">
         <input type="checkbox" name="course" class="form-check-input">
         <button type="submit" class="btn btn-primary" name="submit">submit</button>
-    {% for results in search_results %}
+
     <div id="search_result">
-        <div class="{{ results.course_number }}_{{ results.group_number }}">
-            <div>{{ results.name }}</div>
-            <div>{{ results.teacher }}</div>
-        </div>      
+          {% for results in search_results %}
+          <div class="{{ results.course_number }}_{{ results.group_number }}">
+             <div>{{ results.name }}</div>
+             <div>{{ results.teacher }}</div>
+
+          </div>
+         {% endfor %}
     </div>
-    {% endfor %}
+
 </form>
 {% endblock %}
