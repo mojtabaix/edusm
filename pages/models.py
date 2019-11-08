@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -28,7 +29,8 @@ class Course(models.Model):
     group_number = models.IntegerField(blank=False)
 
     teacher = models.CharField(max_length=150, blank=False)
-    # date = models.DateField(blank=False)
+    exam_date = forms.DateField(
+        widget=forms.widgets.DateInput(format="%y/%m/%d"))
 
     start_time = models.CharField(max_length=7)
     end_time = models.CharField(max_length=6)
