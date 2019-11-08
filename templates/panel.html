@@ -1,6 +1,8 @@
 {% extends 'base1.html' %}
 {% block content %}
-    <a href="{% url 'make_new_course' %}" id="make_new_course">make new course</a>
+    {% if is_admin %}
+        <a href="{% url 'make_new_course' %}" id="make_new_course">make new course</a>
+    {% endif %}
     <a href="{% url 'all_courses' %}" id="courses">all courses</a>
 
 {% endblock %}

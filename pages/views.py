@@ -117,10 +117,10 @@ def setting_page(request):
 
 
 def panel_page(request):
-    return render(request, 'panel.html')
+    return render(request, 'panel.html', {'is_admin': request.user.is_superuser})
 
 # @user_passes_test(lambda u: u.is_superuser)
-@superuser_required
+
 def new_course(request):
      if request.POST:
          form = new_course_form(request.POST, request.FILES)
@@ -157,6 +157,8 @@ def new_course(request):
 
 
 def all_courses(request):
+    # if request.POST:
+
     courses = Course.objects.all()
     print(courses)
     return render(request, 'courses.html', {'courses': courses})
