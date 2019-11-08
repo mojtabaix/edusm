@@ -17,3 +17,20 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Student.objects.create(user=instance)
     instance.student.save()
+
+
+class Course(models.Model):
+    department = models.CharField(max_length=150, blank=False)
+    name = models.CharField(max_length=150, blank=False)
+
+    course_number = models.IntegerField(blank=False)
+
+    group_number = models.IntegerField(blank=False)
+
+    teacher_name = models.CharField(max_length=150, blank=False)
+
+    start_time = models.TimeField(blank=False)
+    end_time = models.TimeField(blank=False)
+
+    first_day = models.CharField(max_length=150, blank=False)
+    second_day = models.CharField(max_length=150)
