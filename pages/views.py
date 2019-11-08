@@ -117,7 +117,7 @@ def setting_page(request):
 
 
 def panel_page(request):
-    return render(request, 'panel.html', {'is_admin': request.user.is_superuser})
+    return render(request, 'panel.html', {'is_admin': True})
 
 # @user_passes_test(lambda u: u.is_superuser)
 
@@ -160,6 +160,7 @@ def all_courses(request):
     courses = Course.objects.all()
     if request.POST:
         search = request.POST.get('search_query')
-        courses = Course.objects.filter(search)
+        courses = Course.objects.filter(department=search)
+        return render(request, 'courses.html', {'search_results': courses})
     # print(courses)
     return render(request, 'courses.html', {'courses': courses})
