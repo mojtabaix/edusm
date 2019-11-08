@@ -157,8 +157,9 @@ def new_course(request):
 
 
 def all_courses(request):
-    # if request.POST:
-
     courses = Course.objects.all()
-    print(courses)
+    if request.POST:
+        search = request.POST.get('search_query')
+        courses = Course.objects.filter(search)
+    # print(courses)
     return render(request, 'courses.html', {'courses': courses})
