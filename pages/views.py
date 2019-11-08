@@ -166,7 +166,9 @@ def all_courses(request):
             q = Q(teacher=request.POST.get('search_query'))
         if request.POST.get('course'):
             q = q | Q(name=request.POST.get('search_query'))
-        if request.POST.get('department') or (not request.POST.get('course') and not request.POST.get('teacher')):
+        if request.POST.get('department') :
+            q = q | Q(department=request.POST.get('search_query'))
+        if not request.POST.get('course') and not request.POST.get('teacher'):
             q = q | Q(department=request.POST.get('search_query'))
 
         results = Course.objects.all().filter(q)
