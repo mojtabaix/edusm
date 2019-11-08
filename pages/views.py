@@ -73,8 +73,6 @@ def contact_page(request):
             return render(request, 'contact-us.html', {'error': 'form isnt valid'})
         email = EmailMessage(title, email + "  "+content, to=['webe19lopers@gmail.com'])
         email.send()
-
-
         return redirect('sent_email')
     return render(request, 'contact-us.html')
 
@@ -102,7 +100,7 @@ def setting_page(request):
              request.user.last_name = last_name
         if last_name is not None:
              request.user.first_name = first_name
-        redirect('profile')
+        return redirect('profile')
     return render(request, 'setting.html')
 
 
