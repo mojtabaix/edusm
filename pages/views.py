@@ -1,6 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -31,14 +32,14 @@ def signup_page(request):
             login(request, user)
             return redirect('home')
         else:
-            pass1 = form.cleaned_data['password1']
-            pass2 = form.cleaned_data['password2']
+            pass1 = form['password1']
+            pass2 = form['password2']
             if pass1 and pass2 and pass1 != pass2:
                 error = form.error_messages['password_mismatch']
             else:
                 error = form.error_messages['user_exists']
 
-    return render(request, 'register-form.html', {error})
+    return render(request, 'register-form.html', {'error': error})
 
 
 def login_page(request):
@@ -65,7 +66,7 @@ def contact_page(request):
         title = request.POST.get('title')
         email = request.POST.get('email')
         content = request.POST.get('text')
-        email = EmailMessage(title, content, to=[email])
+        email = EmailMessage(title, email + content, to=['webe19lopers@gmail.com'])
         email.send()
         # render(request, 'contact-us.html', {title, email, content})
         return redirect('home')
@@ -75,3 +76,9 @@ def contact_page(request):
 @login_required(login_url='login')
 def user_page(request):
     return HttpResponse("user is logged in")
+
+
+def logout_page(request):
+    for user in User.objects.filter(is_active=True):
+        logout(request)
+    return redirect('home')
