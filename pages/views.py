@@ -12,6 +12,7 @@ from django.views.generic.base import View
 
 from pages.decorators import superuser_required
 from pages.forms import SignUpForm, new_course_form
+from pages.models import Course
 
 
 def homepage(request):
@@ -122,13 +123,40 @@ def panel_page(request):
 # @superuser_required
 def new_course(request):
      if request.POST:
-         form = new_course_form(request.POST)
+         form = new_course_form(request.POST, request.FILES)
          if form.is_valid():
              user = form.save()
-             print(user)
+             user.save()
              user.refresh_from_db()
+             if request.POST.get('first_day') == '0':
+                user.first_day = Course.Saturday
+             if request.POST.get('first_day') == '1':
+                user.first_day = Course.Sunday
+             if request.POST.get('first_day') == '2':
+                 user.first_day = Course.Monday
+             if request.POST.get('first_day') == '3':
+                 user.first_day = Course.Tuesday
+             if request.POST.get('first_day') == '4':
+                 user.first_day = Course.Wensday
+             if request.POST.get('second_day') == '0':
+                 user.second_day = Course.Saturday
+             if request.POST.get('second_day') == '1':
+                 user.second_day = Course.Sunday
+             if request.POST.get('second_day') == '2':
+                 user.second_day = Course.Monday
+             if request.POST.get('second_day') == '3':
+                 user.second_day = Course.Tuesday
+             if request.POST.get('second_day') == '4':
+                 user.second_day = Course.Wensday
+             user.save()
+             user.refresh_from_db()
+
+         else:
+             print(form.errors)
      return render(request, 'make_new_course.html')
 
 
 def all_courses(request):
-    return HttpResponse("all courses will be here")
+    courses = Course.objects.all()
+    print(courses)
+    return render(request, 'courses.html', {'courses': courses})

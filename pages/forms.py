@@ -29,6 +29,8 @@ class new_course_form(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+        exclude =('first_day', 'second_day')
+
 
 
 class LoginForm(AuthenticationForm):

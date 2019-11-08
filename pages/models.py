@@ -29,13 +29,13 @@ class Course(models.Model):
 
     teacher_name = models.CharField(max_length=150, blank=False)
 
-    start_time = models.TimeField(blank=False)
-    end_time = models.TimeField(blank=False)
-    Saturday = '0'
-    Sunday = '1'
-    Monday = '2'
-    Tuesday = '3'
-    Wensday = '4'
+    start_time = models.CharField(max_length=7)
+    end_time = models.CharField(max_length=6)
+    Saturday = 'شنبه'
+    Sunday = 'یک شنبه'
+    Monday = 'دو شنیه'
+    Tuesday = 'سه شنبه'
+    Wensday = 'چهارشنیه'
     DAYS = [
         (Saturday, 'شنبه'),
         (Sunday, 'یک شنبه'),
@@ -44,11 +44,14 @@ class Course(models.Model):
         (Wensday, 'چهارشنیه')
     ]
     first_day = models.CharField(
-        max_length=1,
+        max_length=20,
         choices=DAYS,
         blank=False
     )
+
     second_day = models.CharField(
-        max_length=1,
+        max_length=20,
         choices=DAYS,
     )
+    # first_day.
+

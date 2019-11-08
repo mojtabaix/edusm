@@ -3,7 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col-xl">
-                <form id="make_new_course">
+                <form id="make_new_course" method="post">
+                    {% csrf_token %}
                         <div class="form-group">
                           <label for="department">department</label>
                           <input type="text" class="form-control" name="department" id="department" placeholder="">
@@ -22,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label for="teacher">teacher</label>
-                            <input type="text" class="form-control" name="teacher" id="teacher" placeholder="">
+                            <input type="text" class="form-control" name="teacher_name" id="teacher_m" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="start_time">start_time</label>
