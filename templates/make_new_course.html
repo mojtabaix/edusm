@@ -1,0 +1,61 @@
+{% extends 'base1.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xl">
+                <form id="make_new_course">
+                        <div class="form-group">
+                          <label for="department">department</label>
+                          <input type="text" class="form-control" name="department" id="department" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="">
+                            </div>
+                        <div class="form-group">
+                            <label for="course_number">course_number</label>
+                            <input type="number" class="form-control" name="course_number" id="course_number" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="group_number">group_number</label>
+                            <input type="number" class="form-control" name="group_number" id="group_number" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher">teacher</label>
+                            <input type="text" class="form-control" name="teacher" id="teacher" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="start_time">start_time</label>
+                            <input type="time" class="form-control" name="start_time" id="start_time" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="end_time">end_time</label>
+                            <input type="time" class="form-control" name="end_time" id="end_time" placeholder="">
+                        </div>
+                        <div class="form-group">
+                          <label for="select1">first_day</label>
+                          <select class="form-control" name="first_day" id="select1">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="select2">second_day</label>
+                          <select class="form-control" name="second_day" id="select2">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                          </select>
+                        </div>
+                        <a href="{% url 'all_courses' %}" class="btn btn-link" id="courses">Courses</a>
+                        <button type="submit" name="submit" class="btn btn-primary">submit</button>
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

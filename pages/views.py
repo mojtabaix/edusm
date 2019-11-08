@@ -112,3 +112,5 @@ def new_course(request):
     if request.POST:
        department=request.POST.get("depratment")
     return render(request, 'make_new_course.html')
+def all_courses(request):
+    return HttpResponse("all courses will be here")
