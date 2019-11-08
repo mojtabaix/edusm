@@ -120,7 +120,7 @@ def panel_page(request):
     return render(request, 'panel.html')
 
 # @user_passes_test(lambda u: u.is_superuser)
-# @superuser_required
+@superuser_required
 def new_course(request):
      if request.POST:
          form = new_course_form(request.POST, request.FILES)
