@@ -11,4 +11,16 @@
         </div>
     {% endfor %}
 </div>
+    <form action="" id="search_form" method="POST">
+    {% csrf_token %}
+    <input type="text" name="search_query" class="form_control">
+    <button type="submit" class="btn btn-primary" name="submit">submit</button>
+    {% for results in search_results %}
+    <div id="search_results">
+        <div class="{{ results.course_number }}_{{ results.group_number }}">
+            {{ results.name }} {{ results.teacher }}
+        </div>
+    </div>
+    {% endfor %}
+</form>
 {% endblock %}
