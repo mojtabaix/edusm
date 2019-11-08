@@ -160,7 +160,7 @@ def all_courses(request):
     courses = Course.objects.all()
     if request.POST:
         search = request.POST.get('search_query')
-        courses = Course.objects.all().filter(department=search)
-        return render(request, 'courses.html', {'search_results': courses})
+        results = Course.objects.all().filter(department=search)
+        return render(request, 'courses.html', {'search_results': results, 'courses': courses})
     # print(courses)
     return render(request, 'courses.html', {'courses': courses})
