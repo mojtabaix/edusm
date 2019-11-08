@@ -23,8 +23,7 @@
     <div id="search_result">
           {% for results in search_results %}
           <div class="{{ results.course_number }}_{{ results.group_number }}">
-             <div>{{ results.name }}</div>
-             <div>{{ results.teacher }}</div>
+             {{ results.name }} {{ results.teacher }}
 
           </div>
          {% endfor %}
