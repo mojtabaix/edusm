@@ -149,6 +149,7 @@ def new_course(request):
                  user.second_day = Course.Tuesday
              if request.POST.get('second_day') == '4':
                  user.second_day = Course.Wensday
+             user.exam_date =request.POST.get('exam_date')
              user.save()
              user.refresh_from_db()
 
@@ -165,7 +166,7 @@ def all_courses(request):
             q = Q(teacher=request.POST.get('search_query'))
         if request.POST.get('course'):
             q = q | Q(name=request.POST.get('search_query'))
-        if request.POST.get('department') or not request.POST.get('course') and not request.POST.get('teacher'):
+        if request.POST.get('department') or (not request.POST.get('course') and not request.POST.get('teacher')):
             q = q | Q(department=request.POST.get('search_query'))
 
         results = Course.objects.all().filter(q)

@@ -29,8 +29,7 @@ class Course(models.Model):
     group_number = models.IntegerField(blank=False)
 
     teacher = models.CharField(max_length=150, blank=False)
-    exam_date = forms.DateField(
-        widget=forms.widgets.DateInput(format="%y/%m/%d"))
+    exam_date = models.DateField(blank=False, default="2016-01-11")
 
     start_time = models.CharField(max_length=7)
     end_time = models.CharField(max_length=6)
