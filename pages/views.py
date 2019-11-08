@@ -32,12 +32,13 @@ def signup_page(request):
             login(request, user)
             return redirect('home')
         else:
-            pass1 = form['password1']
-            pass2 = form['password2']
+            pass1 = request.POST.get('password1')
+            pass2 = request.POST.get('password2')
             if pass1 and pass2 and pass1 != pass2:
                 error = form.error_messages['password_mismatch']
             else:
-                error = form.error_messages['user_exists']
+                error = 'نام کاربری شما در سیستم موجود است'
+
 
     return render(request, 'register-form.html', {'error': error})
 
@@ -66,7 +67,7 @@ def contact_page(request):
         title = request.POST.get('title')
         email = request.POST.get('email')
         content = request.POST.get('text')
-        email = EmailMessage(title, email + "  "+content, to=['webe19lopers@gmail.com'])
+        email = EmailMessage(title, email + "  "+content, to=['mojtaba.shahrokhi78@gmail.com'])
         email.send()
         # render(request, 'contact-us.html', {title, email, content})
         return redirect('home')
