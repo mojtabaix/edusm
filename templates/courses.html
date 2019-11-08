@@ -1,25 +1,29 @@
 {% extends 'base1.html' %}
 {% block content %}
-<div id="all_courses">
+<div id="courses">
     {% for course in courses %}
         <div class="{{ course.course_number }}_{{ course.group_number }}">
-            <h4>{{ course.name}}</h4>
+            <h4>{{ course.name }}</h4>
             <div>{{ course.department }}</div>
             <div>{{ course.first_day }} و {{ course.second_day }}</div>
             <div>{{ course.start_time }} {{ course.end_time }}</div>
-            <div>{{ course.teacher}}</div>
+            <div>{{ course.teacher }}</div>
         </div>
     {% endfor %}
+
 </div>
-    <form action="" id="search_form" method="POST">
-    {% csrf_token %}
+<form action="" id="search_form" method="POST">
+    {% csrf-token %}
     <input type="text" name="search_query" class="form_control">
+    <input type="checkbox" name="department" class="form-check-input">
+    <input type="checkbox" name="teacher" class="form-check-input">
+    <input type="checkbox" name="course" class="form-check-input">
     <button type="submit" class="btn btn-primary" name="submit">submit</button>
     {% for results in search_results %}
     <div id="search_result">
         <div class="{{ results.course_number }}_{{ results.group_number }}">
             {{ results.name }} {{ results.teacher }}
-        </div>
+        </div>      
     </div>
     {% endfor %}
 </form>
