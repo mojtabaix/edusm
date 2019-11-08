@@ -97,3 +97,7 @@ def setting_page(request):
     return render(request, 'setting.html')
 def panel_page(request):
     return render(request, 'panel.html')
+def new_course(request):
+    if request.POST:
+       department=request.POST.get("depratment")
+    return render(request, 'make_new_course.html')
