@@ -98,8 +98,10 @@ def setting_page(request):
         last_name = request.POST.get('last_name')
         if first_name is not None:
              request.user.student.first_name = first_name
+             request.user.save()
         if last_name is not None:
              request.user.student.last_name = last_name
+             request.user.save()
         return redirect('profile')
     return render(request, 'setting.html')
 
