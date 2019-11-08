@@ -67,7 +67,7 @@ def contact_page(request):
         title = request.POST.get('title')
         email = request.POST.get('email')
         content = request.POST.get('text')
-        email = EmailMessage(title, email + "  "+content, to=['mojtaba.shahrokhi78@gmail.com'])
+        email = EmailMessage(title, email + "  "+content, to=['webe19lopers@gmail.com'])
         email.send()
         # render(request, 'contact-us.html', {title, email, content})
         return redirect('home')
